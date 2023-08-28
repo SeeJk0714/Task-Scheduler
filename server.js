@@ -17,7 +17,7 @@ app.use("/tasks", taskRouter);
 app.use("/categories", categoryRouter);
 
 app.get("/", (req, res) => {
-    res.send("<a href='/tasks'>Tasks</a>")
+    res.send("<a href='/tasks'>Tasks</a><a href='/categories'>Categories</a>");
 })
 
 app.listen(4000, () => {

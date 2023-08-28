@@ -1,4 +1,5 @@
 const express = require("express");
+const Category = require("../models/category");
 const router = express.Router();
 
 const Task = require("../models/task");
@@ -30,7 +31,7 @@ router.get("/:id", async (req, res) => {
     const data = await Task.findOne({ _id: req.params.id });
     res.status(200).send(data);
   } catch (error) {
-    res.status(400).send("Task not found");
+    res.status(400).send({message: "Task not found"});
   }
 });
 
@@ -45,6 +46,7 @@ router.post("/", async (req, res) => {
       category: req.body.category,
     });
     await newTask.save();
+
     res.status(200).send(newTask);
   } catch (error) {
     res.status(400).send({ message: error._message });
@@ -80,7 +82,7 @@ router.put("/:id/complete", async (req, res) => {
     const completedTask = await Task.findByIdAndUpdate(
       task_id,
       {
-        completed: true,
+        status: "Completed",
       },
       {
         new: true,

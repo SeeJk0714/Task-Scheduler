@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     res.status(200).send(await Category.find().populate("tasks"));
   } catch (error) {
-    res.status(400).send("Failed to update the category");
+    res.status(400).send({message: "Failed to update the category"});
   }
 });
 
