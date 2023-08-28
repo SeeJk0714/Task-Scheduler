@@ -16,6 +16,7 @@ const taskSchema = new Schema({
         type: String,
         enum: ["Low", "Medium", "High"], 
     },
+    category: { type: Schema.Types.ObjectId, ref: "Category" },
 });
 
 const Task = model("Task", taskSchema);
